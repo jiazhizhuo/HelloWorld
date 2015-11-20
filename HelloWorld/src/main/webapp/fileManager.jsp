@@ -57,7 +57,7 @@ $(function() {
         'auto'     : false,
         'swf'      : $('#path').val()+'/uploadify/uploadify.swf',
         /* 'uploader' : $('#path').val()+'/uploadify/uploadify.php' */
-        'uploader' : $('#path').val()+'/uploadFile'
+        'uploader' : $('#path').val()+'/uploadFile' 
     });
 });
 </script>
