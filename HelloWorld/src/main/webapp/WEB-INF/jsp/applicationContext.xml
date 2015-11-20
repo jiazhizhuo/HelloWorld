@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.0.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+    <!-- 激活spring的注解. -->  
+    <context:annotation-config />  
+    
+	<context:property-placeholder location="/WEB-INF/jdbc.properties"/>
+	
+	
+	    <!-- 数据源配置,使用c3p0数据库连接池 -->  
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"  
+                destroy-method="close" >
+		<property name="driverClass" value="${web.jdbc.driverClassName}"  />
+		<property name="jdbcUrl" value="${web.jdbc.url}"  />
+		<property name="user" value="${web.jdbc.username}"  />
+		<property name="password" value="${web.jdbc.password}"  />
+		<property name="acquireIncrement" value="5"  />
+		<property name="idleConnectionTestPeriod" value="60"  />
+		<property name="maxPoolSize" value="100"  />
+		<property name="maxStatements" value="50"  />
+		<property name="minPoolSize" value="10"  />
+    </bean>
+  
+<!--     定义事务管理  
+    See http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/transaction.html  
+    -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>  
+	
+</beans>

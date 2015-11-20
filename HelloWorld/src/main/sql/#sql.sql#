@@ -1,0 +1,21 @@
+CREATE DATABASE blog CHARACTER SET 'utf8'  COLLATE 'utf8_general_ci';
+use blog;
+
+drop table if exists _user;
+create table _user(
+	_id varchar(32),
+	_password varchar(32),
+	_name varchar(128),
+	primary key(_id)
+);
+
+
+drop table if exists _blog;
+create table _blog(
+       _id int(32) auto_increment,
+       _user_id varchar(32),
+       _file_path varchar(128),
+       _title varchar(32),
+       primary key(_id),
+       foreign key(_user_id) references _user(_id)
+);

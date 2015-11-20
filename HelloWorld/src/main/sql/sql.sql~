@@ -1,0 +1,13 @@
+CREATE DATABASE blog CHARACTER SET 'utf8'  COLLATE 'utf8_general_ci';
+use blog;
+
+drop table if exists _user;
+create table _user(
+	_id varchar(32),
+	_password varchar(32),
+	_name varchar(128)
+);
+
+
+drop table if exists _blog;
+create table 
